@@ -26,3 +26,15 @@
             </tbody>
         </table>
     </div>
+    
+    <!-- Delete confirmation modal -->
+    <div *ngIf="showDeleteModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">Confirmar eliminación</div>
+            <div class="modal-body">¿Estás seguro que quieres eliminar este contacto?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" (click)="cancelDelete()">Cancelar</button>
+                <button class="btn btn-danger" (click)="confirmDelete()">Eliminar</button>
+            </div>
+        </div>
+    </div>

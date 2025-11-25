@@ -1,5 +1,10 @@
+@import './theme-colors.css';
+
 :root {
 	--container-logo-size: 64px;
+	--text-on-primary: #fff;
+	--text-on-container: #222;
+	--container-bg: rgba(255,255,255,0.95);
 }
 
 /* Logo inside the main container (keeps layout stable across pages) */
@@ -48,6 +53,46 @@
 }
 
 .container { padding-top: 12px; }
+
+/* Application background using the extracted image colors */
+html, body, app-root {
+	height: 100%;
+}
+body {
+	min-height: 100vh;
+	/* primary linear gradient */
+	background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 60%, var(--bg-accent) 100%);
+	/* radial highlight to emulate the yellow/orange rounded shape on the top-right */
+	background-image: radial-gradient(1200px 700px at 85% 10%, rgba(255,196,0,0.15), rgba(255,122,24,0.10)), linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 60%, var(--bg-accent) 100%);
+	color: var(--text-on-primary);
+	background-attachment: fixed;
+}
+
+/* Most content is wrapped in a 'container' which should have a readable background */
+.container {
+	background: var(--container-bg);
+	border-radius: 8px;
+	box-shadow: 0 8px 20px rgba(2,6,23,0.12);
+	padding: 16px;
+	color: var(--text-on-container);
+}
+
+/* Variant for the login page: slightly lighter and less contrast so forms stand out */
+.login-page .container {
+	background: rgba(255,255,255,0.98);
+}
+
+/* Buttons default to the app color palette */
+.btn-primary {
+	background: var(--bg-secondary) !important;
+	border-color: var(--bg-secondary) !important;
+	color: var(--text-on-primary) !important;
+}
+.btn-danger {
+	background: var(--bg-accent-dark) !important;
+	border-color: var(--bg-accent-dark) !important;
+	color: #fff !important;
+}
 
 /* Hide the global container logo while on the login page to avoid duplication */
 .login-page .container-logo { display: none; }

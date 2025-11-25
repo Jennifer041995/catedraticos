@@ -22,7 +22,6 @@ export class DataServices{
         )
     }
 
-    /* CONTACTOS CRUD */
     guardar_contactos(contactos: any[]){
         this.httpClient.put('https://catedraticos-default-rtdb.firebaseio.com/contactos.json', contactos).subscribe(
             response=>console.log("Se han guardado los contactos"),
@@ -35,15 +34,26 @@ export class DataServices{
         return this.httpClient.get('https://catedraticos-default-rtdb.firebaseio.com/contactos.json?auth=' + token);
     }
 
-    actualizar_contacto(indice: number, contacto: any): Promise<any>{
-        let url = 'https://catedraticos-default-rtdb.firebaseio.com/contactos/' + indice + '.json';
+    crear_contacto(contacto: any): Promise<any>{
+        const token = this.loginService.getIdToken();
+        const observable = this.httpClient.post('https://catedraticos-default-rtdb.firebaseio.com/contactos.json?auth=' + token, contacto);
+        return lastValueFrom(observable);
+    }
+
+    get_contact(id: string){
+        const token = this.loginService.getIdToken();
+        return this.httpClient.get('https://catedraticos-default-rtdb.firebaseio.com/contactos/' + id + '.json?auth=' + token);
+    }
+
+    actualizar_contacto(id: string, contacto: any): Promise<any>{
+        let url = 'https://catedraticos-default-rtdb.firebaseio.com/contactos/' + id + '.json';
         const observable = this.httpClient.put(url, contacto);
 
         return lastValueFrom(observable);
     }
 
-    eliminar_contacto(indice: number){
-        let url = 'https://catedraticos-default-rtdb.firebaseio.com/contactos/' + indice + '.json';
+    eliminar_contacto(id: string){
+        let url = 'https://catedraticos-default-rtdb.firebaseio.com/contactos/' + id + '.json';
         this.httpClient.delete(url).subscribe(
             response =>console.log('Se ha eliminado el contacto' + response),
             error => console.log('Error: ' + error)

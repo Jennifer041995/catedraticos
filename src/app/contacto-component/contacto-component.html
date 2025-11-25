@@ -3,24 +3,40 @@
 
 <div class="contacto-layout">
     <div class="contacto-form">
-        <h3>{{ editIndex === null ? 'Nuevo Contacto' : 'Editar Contacto' }}</h3>
-        <form #contactForm="ngForm" (ngSubmit)="guardar()">
+        <h3>{{ editId === null ? 'Nuevo Contacto' : 'Editar Contacto' }}</h3>
+        <div *ngIf="message" class="message" [class.success]="messageType === 'success'" [class.error]="messageType === 'error'">{{ message }}</div>
+        <form #contactForm="ngForm" (ngSubmit)="guardar()" novalidate>
             <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" class="form-control" name="nombre" [(ngModel)]="contacto.nombre" required>
+                <input type="text" class="form-control" name="nombre" [(ngModel)]="contacto.nombre" required #nombre="ngModel">
+                <small class="invalid-feedback" *ngIf="nombre.invalid && nombre.touched">El nombre es obligatorio.</small>
             </div>
             <div class="form-group">
                 <label>Correo</label>
-                <input type="email" class="form-control" name="email" [(ngModel)]="contacto.email" required>
+                <input type="email" class="form-control" name="email" [(ngModel)]="contacto.email" required #email="ngModel">
+                <small class="invalid-feedback" *ngIf="email.invalid && email.touched">Correo inválido o vacío.</small>
             </div>
             <div class="form-group">
                 <label>Teléfono</label>
-                <input type="text" class="form-control" name="telefono" [(ngModel)]="contacto.telefono">
+                <input type="text" class="form-control" name="telefono" [(ngModel)]="contacto.telefono" pattern="^[0-9()+- ]*$" #telefono="ngModel">
+                <small class="invalid-feedback" *ngIf="telefono.invalid && telefono.touched">Teléfono inválido (solo números, +, -, paréntesis).</small>
             </div>
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">{{ editIndex === null ? 'Guardar' : 'Actualizar' }}</button>
-                <button type="button" class="btn btn-secondary" (click)="contacto = { nombre: '', email: '', telefono: '' }; editIndex = null">Cancelar</button>
+                <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">{{ editId === null ? 'Guardar' : 'Actualizar' }}</button>
+                <button type="button" class="btn btn-secondary" (click)="contacto = { id:'', nombre: '', email: '', telefono: '' }; editId = null; message=''; messageType=''">Cancelar</button>
             </div>
-        </form>
+            </form>
+        
+            <!-- Delete confirmation modal -->
+            <div *ngIf="showDeleteModal" class="modal-overlay">
+                <div class="modal">
+                    <div class="modal-header">Confirmar eliminación</div>
+                    <div class="modal-body">¿Estás seguro que quieres eliminar este contacto?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" (click)="cancelDelete()">Cancelar</button>
+                        <button class="btn btn-danger" (click)="confirmDelete()">Eliminar</button>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>

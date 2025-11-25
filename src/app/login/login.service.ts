@@ -44,6 +44,30 @@ export class LoginService {
         return !!localStorage.getItem('token');
     }
 
+    register(email: string, password: string) {
+        return firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(
+                response => {
+                    return firebase.auth().currentUser?.getIdToken()
+                        .then(
+                            token => {
+                                this.token = token;
+                                localStorage.setItem('token', token);
+                                this.router.navigate(['inicio']);
+                                return Promise.resolve();
+                            },
+                            error => {
+                                console.log("Error al obtener el token" + error);
+                                return Promise.reject(error);
+                            }
+                        )
+                }
+            )
+            .catch(error => {
+                return Promise.reject(error);
+            });
+    }
+
     logout(){
         firebase.auth().signOut()
         .then(

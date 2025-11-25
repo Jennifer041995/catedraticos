@@ -3,15 +3,15 @@
   justify-content: center;
   align-items: center;
   height: 80vh;
-  background-color: #f7f9fc;
+  background: transparent; 
   padding: 20px;
 }
 
 .login-card {
-  background-color: white;
+  background-color: var(--container-bg);
   padding: 30px 40px;
   border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 16px #0000FF;
   width: 100%;
   max-width: 400px;
 }
@@ -24,7 +24,10 @@
   margin-bottom: 20px;
   text-align: center;
   font-weight: 600;
-  color: #333;
+  color: var(--text-on-container);
+  background-color: var(--bg-accent);
+  padding: 10px;
+  border-radius: 4px;
 }
 
 .form-group {
@@ -42,26 +45,26 @@
 }
 
 .form-control:focus {
-  border-color: #007bff;
+  border-color: var(--bg-secondary);
   outline: none;
-  box-shadow: 0 0 5px rgba(0,123,255,0.5);
+  box-shadow: 0 0 6px rgba(13,102,179,0.18);
 }
 
 .btn-primary {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  background-color: #007bff;
-  border: none;
+  background-color: #0D96F2;
+  border: 1px #0D96F2;
   border-radius: 4px;
-  color: white;
+  color: var(--text-on-primary);
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  filter: brightness(0.92);
 }
 
 .error-message {
