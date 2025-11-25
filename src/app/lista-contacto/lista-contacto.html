@@ -1,0 +1,28 @@
+
+<div class="contacto-list">
+        <h3>Lista de Contactos</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of contactos; let i = index">
+                    <td>{{ c.nombre }}</td>
+                    <td>{{ c.email }}</td>
+                    <td>{{ c.telefono }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary" (click)="editar(i)">Editar</button>
+                        <button class="btn btn-sm btn-danger" (click)="eliminar(i)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr *ngIf="contactos.length === 0">
+                    <td colspan="4">No hay contactos guardados.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

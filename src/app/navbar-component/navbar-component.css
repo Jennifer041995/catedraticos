@@ -1,0 +1,47 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background: #1976d2;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a, .navbar .login-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    align-self: center;
+}
+
+/* Login container pushed to right */
+.navbar-login { margin-left: auto; }
+
+/* Additional styling for the login link if needed */
+.navbar .login-link {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 8px 12px;
+    }
+
+    .navbar-links {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .navbar-links {
+        gap: 8px;
+        font-size: 14px;
+    }
+    .navbar-login { margin-left: 8px; }
+}

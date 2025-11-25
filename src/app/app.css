@@ -1,0 +1,53 @@
+:root {
+	--container-logo-size: 64px;
+}
+
+/* Logo inside the main container (keeps layout stable across pages) */
+.container-logo {
+	display: flex;
+	align-items: center;
+	padding: 8px 0;
+}
+
+.container-logo-img {
+	height: var(--container-logo-size);
+	width: auto;
+	display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+	:root { --container-logo-size: 56px; }
+}
+
+@media (max-width: 380px) {
+	:root { --container-logo-size: 48px; }
+}
+
+/* Make the logo smaller only on the login page */
+.login-page .container-logo-img {
+	height: 48px; /* more appropriate size on desktop */
+	max-width: 180px; /* avoid oversized logos */
+}
+
+@media (max-width: 900px) {
+	.login-page .container-logo-img { height: 42px; }
+}
+
+@media (max-width: 600px) {
+	.login-page .container-logo-img { height: 36px; }
+}
+
+@media (max-width: 380px) {
+	.login-page .container-logo-img { height: 30px; }
+}
+
+/* Add a smooth transition to logo size changes */
+.container-logo-img {
+	transition: height 0.12s linear, max-width 0.12s linear;
+}
+
+.container { padding-top: 12px; }
+
+/* Hide the global container logo while on the login page to avoid duplication */
+.login-page .container-logo { display: none; }

@@ -1,0 +1,30 @@
+
+:root { --gap: 16px; }
+
+.contacto-layout {
+    display: flex;
+    gap: var(--gap);
+}
+
+.contacto-list { flex: 1; }
+.contacto-form { width: 360px; }
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+input, textarea { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+
+button { background: #1976d2; color: white; padding: 10px 12px; border: none; border-radius: 6px; }
+
+.form-actions { display:flex; gap: 8px; }
+
+table.table { width:100%; border-collapse: collapse; }
+table th, table td { padding: 8px 6px; border-bottom: 1px solid #eee; }
+
+@media (max-width: 800px){
+    .contacto-layout { flex-direction: column; }
+    .contacto-form { width:100%; }
+}

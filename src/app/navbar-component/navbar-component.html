@@ -1,0 +1,14 @@
+<nav class="navbar">
+    
+    <div class="navbar-links">
+        <a routerLink="/inicio">Inicio</a>
+        <a routerLink="/catedraticos">Catedráticos</a>
+        <a routerLink="/materias">Materias</a>
+        <a routerLink="/contacto">Contacto</a>
+        <a routerLink="/lista">Lista de contactos</a>
+    </div>
+    <div class="navbar-login">
+        <a *ngIf="!estaLogueado()" routerLink="/login" class="login-link">Login</a>
+        <a *ngIf="estaLogueado()" class="login-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
