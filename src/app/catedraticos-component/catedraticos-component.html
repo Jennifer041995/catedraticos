@@ -1,8 +1,28 @@
 
 <div class="grid">
-    <div class="card" *ngFor="let prof of lista">
-        <img [src]="">
-        <h3> {{prof.nombre}} </h3>
-        <p> {{prof.materia}} </p>
+  <div class="card" *ngFor="let prof of lista">
+    <div style="display: flex; align-items: center; gap: 100px;">
+      <img [src]="prof.foto" alt="Foto de catedrático" style="width: 480px; height: 310px; border: 100%;">
+      <div><br>
+        <h1>Lic. Salvador Mendoza</h1>
+        <h3>{{ prof.nombre }}</h3>
+        <p>{{ prof.materia }}</p>
+        <p>{{ prof.descripcion }}</p><br>
+      </div>
     </div>
-</div>
+  </div>
+</div><br>
+ <p align="justify">El docente de Licenciatura en Ciencias Jurídicas se caracteriza por su amplia formación
+   en el campo del Derecho y su compromiso con la enseñanza universitaria. Su labor se centra en guiar a los 
+   estudiantes en la comprensión de normas, principios y procesos legales, así como en el análisis crítico de 
+   casos reales. Con una metodología clara y dinámica, fomenta el pensamiento reflexivo, la argumentación jurídica 
+   y la ética profesional. Su experiencia académica y práctica permite que los futuros abogados adquieran las 
+   competencias necesarias para desempeñarse con responsabilidad, solvencia y vocación de servicio dentro del 
+   ámbito jurídico.</p>
+  <p align="justify">En el aula, se distingue por promover el pensamiento crítico, la participación activa y el debate fundamentado, 
+    creando un ambiente de aprendizaje dinámico y respetuoso. Su labor va más allá de la simple transmisión de 
+    conocimientos: acompaña a los estudiantes en su desarrollo profesional, orientándolos en procesos de investigación, 
+    prácticas académicas y comprensión ética del ejercicio jurídico</p>
+  <p align="justify">El compromiso del docente con la actualización constante y la calidad educativa contribuye significativamente a 
+    formar profesionales responsables, analíticos y conscientes del impacto social del Derecho, preparados para 
+    enfrentar los retos del ámbito legal con rigor, ética y vocación de servicio.</p>

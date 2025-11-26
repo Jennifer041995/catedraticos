@@ -73,7 +73,7 @@ export class LoginService {
         .then(
             () => {
                 this.token = '';
-                localStorage.removeItem('token');
+                localStorage.removeItem('');
                 this.router.navigate(['login']);
             }
         )

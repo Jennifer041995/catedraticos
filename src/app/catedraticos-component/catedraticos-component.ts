@@ -10,9 +10,11 @@ import { CommonModule } from '@angular/common';
 })
 export class CatedraticosComponent {
   lista = [
-  {nombre: '', materia: '', foto: ''},
-  {nombre: '', materia: '', foto: ''},
-  {nombre: '', materia: '', foto: ''},
-  {nombre: '', materia: '', foto: ''},
+    {
+      nombre: 'Docente de Licenciatura en Ciencias Jurídicas',
+      materia: 'Legislación Empresarial',
+      foto: 'https://scontent.fsal3-1.fna.fbcdn.net/v/t39.30808-6/487217675_1100400922126952_3114646161043834105_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEmO3Z7lMX5NhU--orI1uQJasSy24Rd-L1qxLLbhF34vUGx_rreXHIZTlJp8b7c5hYdKR3Bg3T6bzLn74twQjro&_nc_ohc=r3WfgRKMq-0Q7kNvwE4Fh1E&_nc_oc=AdkZ8csKCvqUCudOmctNoXiZGLcaj8CjzXZNyeuj8cxLLTWkTWFZMu1GOYxxOleyFxCL8QhsHlKnsRmiDjK7h_29&_nc_zt=23&_nc_ht=scontent.fsal3-1.fna&_nc_gid=uyLyKJm0Fbb5M_3pS1m1qg&oh=00_Afj_yurPFmWstyl9c1wAnvf4zARGRw0SNzL0is0wTDtTVQ&oe=692C3A10',
+      descripcion: 'Docente experto en derecho empresarial y legislación aplicada en leyes.'
+    },
   ];
 }

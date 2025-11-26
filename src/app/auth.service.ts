@@ -7,7 +7,8 @@ import {
   signOut,
   onAuthStateChanged,
   User,
-  Auth
+  Auth,
+  UserCredential
 } from 'firebase/auth';
 import { app } from '../config/firebase-config';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -38,14 +39,17 @@ export class AuthService {
   }
 
   // Iniciar sesión con email y contraseña
-  async login(email: string, password: string): Promise<void> {
-    if (!isPlatformBrowser(this.platformId)) {
-      throw new Error('La autenticación solo está disponible en el navegador');
-    }
-
+  async login(email: string, password: string): Promise<UserCredential> {
     try {
-      await signInWithEmailAndPassword(this.auth, email, password);
+      
+      if (!isPlatformBrowser(this.platformId)) {
+        throw new Error('La autenticación solo está disponible en el navegador');
+      }
+
+      return await signInWithEmailAndPassword(this.auth, email, password);
     } catch (error: any) {
+      console.log("Error al iniciar sesión", error);
+      
       throw this.handleAuthError(error);
     }
   }

@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { LoginService } from './login.service';
 import { AuthService } from '../auth.service';
-
+import { LoginService } from './login.service';
+import { LoginModel } from './login-model';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ import { AuthService } from '../auth.service';
 export class Login implements OnInit, OnDestroy {
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
     document.body.classList.add('login-page');
@@ -26,22 +26,25 @@ export class Login implements OnInit, OnDestroy {
     document.body.classList.remove('login-page');
   }
 
-  login(form: NgForm) {
+  async login(form: NgForm): Promise<void> {
     const email = form.value.email;
     const password = form.value.password;
     this.errorMessage = '';
-  if (form.invalid) {
-    this.errorMessage = 'Complete el formulario correctamente.';
-    return;
-  }
+    if (form.invalid) {
+      this.errorMessage = 'Complete el formulario correctamente.';
+      return;
+    }
 
-  this.authService.login(email, password)
-    .then(() => {
-      // Login successful, navigation will be handled by auth state
-    })
-    .catch((error: any) => {
+    try {
+      let userCredential: LoginModel = await this.authService.login(email, password) as unknown as LoginModel;
+      const token: string = userCredential.user.stsTokenManager.accessToken || '';
+      if (token) {
+        localStorage.setItem('token', token);
+        this.loginService.token = token;
+      }
+      this.router.navigate(['inicio']);
+    } catch (error) {
       console.error('Login error:', error);
-      this.errorMessage = error.message;
-    });
+    }
   }
 }

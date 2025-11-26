@@ -14,7 +14,6 @@ export class InicioComponent {
 
   constructor(private router: Router) {}
 
-  // Navigate back to 'inicio' route
   volverHome() {
     this.router.navigate(['/inicio']);
   }

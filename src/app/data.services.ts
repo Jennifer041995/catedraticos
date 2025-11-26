@@ -22,37 +22,37 @@ export class DataServices{
         )
     }
 
-    guardar_contactos(contactos: any[]){
-        this.httpClient.put('https://catedraticos-default-rtdb.firebaseio.com/contactos.json', contactos).subscribe(
-            response=>console.log("Se han guardado los contactos"),
+    guardar_catedraticos(catedraticos: any[]){
+        this.httpClient.put('https://catedraticos-default-rtdb.firebaseio.com/datos.json', catedraticos).subscribe(
+            response=>console.log("Se han guardado los catedraticos"),
             error=>console.log('Error ' + error)
         )
     }
 
-    cargar_contactos(){
+    cargar_catedratico(){
         const token = this.loginService.getIdToken();
         return this.httpClient.get('https://catedraticos-default-rtdb.firebaseio.com/contactos.json?auth=' + token);
     }
 
-    crear_contacto(contacto: any): Promise<any>{
+    crear_catedratico(contacto: any): Promise<any>{
         const token = this.loginService.getIdToken();
         const observable = this.httpClient.post('https://catedraticos-default-rtdb.firebaseio.com/contactos.json?auth=' + token, contacto);
         return lastValueFrom(observable);
     }
 
-    get_contact(id: string){
+    get_catedratico(id: string){
         const token = this.loginService.getIdToken();
         return this.httpClient.get('https://catedraticos-default-rtdb.firebaseio.com/contactos/' + id + '.json?auth=' + token);
     }
 
-    actualizar_contacto(id: string, contacto: any): Promise<any>{
+    actualizar(id: string, contacto: any): Promise<any>{
         let url = 'https://catedraticos-default-rtdb.firebaseio.com/contactos/' + id + '.json';
         const observable = this.httpClient.put(url, contacto);
 
         return lastValueFrom(observable);
     }
 
-    eliminar_contacto(id: string){
+    eliminar(id: string){
         let url = 'https://catedraticos-default-rtdb.firebaseio.com/contactos/' + id + '.json';
         this.httpClient.delete(url).subscribe(
             response =>console.log('Se ha eliminado el contacto' + response),
