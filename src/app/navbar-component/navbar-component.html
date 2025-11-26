@@ -1,16 +1,9 @@
-<nav class="navbar">
-    
+<nav *ngIf="estaLogueado()" class="navbar">    
     <div class="navbar-links">
         <a routerLink="/inicio">Inicio</a>
         <a routerLink="/catedraticos">Catedráticos</a>
-        <a routerLink="/catedratico2">Catedrático2</a>
-        <a routerLink="/catedraticos3">Catedrático3</a>
-        <a routerLink="/catedraticos4">Catedrático4</a>
-        <a routerLink="/catedraticos5">Catedrático5</a>
-
     </div>
     <div class="navbar-login">
-        <a *ngIf="!estaLogueado()" routerLink="/login" class="login-link">Login</a>
-        <a *ngIf="estaLogueado()" class="login-link" href="#" (click)="logout(); $event.preventDefault()">Logout</a>
+        <button type="button" class="login-link" (click)="logout()">Logout</button>
     </div>
 </nav>

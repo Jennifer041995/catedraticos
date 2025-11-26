@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataServices } from '../data.services';
+import { DocenteModel, DocenteResponse } from '../models/docente-mode';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-catedraticos-component',
@@ -8,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './catedraticos-component.html',
   styleUrls: ['./catedraticos-component.css'],
 })
-export class CatedraticosComponent {
+export class CatedraticosComponent implements OnInit {
   lista = [
     {
       nombre: 'Docente de Licenciatura en Ciencias Jurídicas',
@@ -17,4 +20,24 @@ export class CatedraticosComponent {
       descripcion: 'Docente experto en derecho empresarial y legislación aplicada en leyes.'
     },
   ];
+
+  public hasError = false;
+  public catedraticos$!: Observable<DocenteModel[]>;
+
+  constructor(private dataService: DataServices){}
+
+  ngOnInit(): void {
+    this.catedraticos$ = this.getListaDocs().pipe(
+      map((response) => (response ? Object.values(response) : [])),
+      catchError((error) => {
+        console.error('Error cargando catedráticos', error);
+        this.hasError = true;
+        return of([]);
+      })
+    );
+  }
+
+  private getListaDocs(): Observable<DocenteResponse | null>{
+    return this.dataService.cargar_catedraticos();
+  }
 }

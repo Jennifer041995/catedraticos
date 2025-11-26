@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import firebase from "firebase/compat/app";
+import { getAuth, signOut } from 'firebase/auth';
 import "firebase/compat/auth";
 
 @Injectable(
@@ -68,14 +69,24 @@ export class LoginService {
             });
     }
 
-    logout(){
+    /*logout(){
         firebase.auth().signOut()
         .then(
             () => {
                 this.token = '';
-                localStorage.removeItem('');
+                localStorage.removeItem('token');
                 this.router.navigate(['login']);
             }
         )
+    }*/
+
+        logout() {
+            const auth = getAuth();
+            return signOut(auth)
+              .then(() => {
+                this.token = '';
+                localStorage.removeItem('token');
+                this.router.navigate(['login']);
+              });
+          }
     }
-}

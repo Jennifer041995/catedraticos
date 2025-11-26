@@ -13,7 +13,7 @@ import { Catedraticos5Component } from "./catedraticos5-component/catedraticos5-
 export const routes: Routes = [
     { path: "", component: Login },
     { path: "inicio", component: InicioComponent, canActivate: [LoginGuardian] },
-    { path: "catedraticos", component: CatedraticosComponent },
+    { path: "catedraticos", component: CatedraticosComponent, canActivate: [LoginGuardian] },
     { path: "catedratico2", component: Catedratico2Component },
     { path: "catedraticos3", component: ListaContacto },
     { path : "catedraticos4", component: MateriasComponent },
